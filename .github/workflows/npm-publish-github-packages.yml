@@ -1,0 +1,36 @@
+#此工作流将使用node运行测试，然后在创建发布时将包发布到GitHub Packages
+#有关更多信息，请参见:https://docs . github . com/en/actions/publishing-packages/publishing-nodejs-packages
+
+名字: Node.js包
+
+在:
+释放；排放；发布:
+类型: [创造]
+
+工作:
+建设:
+连续运行: Ubuntu-最新版
+步伐:
+      - 使用: 动作/签出@v3
+      - 使用: 动作/设置-节点@v3
+随着:
+节点版本: 16
+      - 奔跑: npm ci
+      - 奔跑: npm测试
+
+发布-gpr:
+需要: 建设
+连续运行: Ubuntu-最新版
+许可:
+内容: 阅读
+包装: 写
+步伐:
+      - 使用: 动作/签出@v3
+      - 使用: 动作/设置-节点@v3
+随着:
+节点版本: 16
+注册表url: https://npm.pkg.github.com/
+      - 奔跑: npm ci
+      - 奔跑: npm发布
+包封/包围（动词envelop的简写）:
+节点认证令牌: ${{秘密。GITHUB_TOKEN}}
